@@ -1,6 +1,6 @@
 module.exports = {
   // Type check TypeScript files
-  "**/*.(ts|tsx)": () => "yarn tsc --noEmit",
+  "**/*.(ts|tsx)": () => "yarn tsc --noEmit --pretty",
 
   // Lint & Prettify TS and JS files
   "**/*.(ts|tsx|js)": (filenames) => [
