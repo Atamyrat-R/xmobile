@@ -1,5 +1,5 @@
 export type APIResponse = {
-  success: boolean;
+  success?: boolean;
   message?: string;
   data?: object;
   pagination?: {
