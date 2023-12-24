@@ -18,4 +18,4 @@ This is an official starter Turborepo.
 - sample UI designs:
   - [akyol.comt.tm](https://akyol.com.tm/index.php?route=product/category&path=72_214)
   - [mobile.com.tm](https://mobile.com.tm/products?category=2)
-  - [gerekli.tm](gerekli.tm)
+  - [gerekli.tm](https://gerekli.tm)
