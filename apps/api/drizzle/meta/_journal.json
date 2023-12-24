@@ -22,6 +22,20 @@
       "when": 1703441119642,
       "tag": "0002_true_sugar_man",
       "breakpoints": true
+    },
+    {
+      "idx": 3,
+      "version": "5",
+      "when": 1703448701696,
+      "tag": "0003_closed_prima",
+      "breakpoints": true
+    },
+    {
+      "idx": 4,
+      "version": "5",
+      "when": 1703448709689,
+      "tag": "0004_short_big_bertha",
+      "breakpoints": true
     }
   ]
 }
