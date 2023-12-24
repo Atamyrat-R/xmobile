@@ -3,6 +3,7 @@ import { pgTable, varchar, integer, uniqueIndex } from "drizzle-orm/pg-core";
 export const cars = pgTable(
   "cars",
   {
+    name: varchar("name", { length: 256 }),
     brand: varchar("brand", { length: 256 }),
     model: varchar("model", { length: 256 }),
     year: integer("year"),

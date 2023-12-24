@@ -1,0 +1,20 @@
+{
+  "version": "5",
+  "dialect": "pg",
+  "entries": [
+    {
+      "idx": 0,
+      "version": "5",
+      "when": 1703439072635,
+      "tag": "0000_exotic_terror",
+      "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "5",
+      "when": 1703440587137,
+      "tag": "0001_talented_black_bird",
+      "breakpoints": true
+    }
+  ]
+}
