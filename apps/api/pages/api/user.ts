@@ -1,4 +1,4 @@
-import { Car, cars } from "@/pages/schema/cars";
+import { User, users } from "@/pages/schema/users";
 import { APIResponse } from "@/pages/shared/apiresponse";
 import runMiddleware from "@/pages/shared/cors";
 import { dbClient } from "@/pages/shared/dbClient";
@@ -15,10 +15,10 @@ export default async function handler(
       message: "POST request",
     });
   } else if (req.method === "GET") {
-    const car: Car[] = await dbClient.select().from(cars);
+    const user: User[] = await dbClient.select().from(users);
     res.status(200).json({
       success: true,
-      data: car,
+      data: user,
     });
   }
 }

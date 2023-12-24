@@ -15,6 +15,13 @@
       "when": 1703440587137,
       "tag": "0001_talented_black_bird",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "5",
+      "when": 1703441119642,
+      "tag": "0002_true_sugar_man",
+      "breakpoints": true
     }
   ]
 }
