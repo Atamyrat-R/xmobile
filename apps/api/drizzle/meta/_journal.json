@@ -36,6 +36,13 @@
       "when": 1703448709689,
       "tag": "0004_short_big_bertha",
       "breakpoints": true
+    },
+    {
+      "idx": 5,
+      "version": "5",
+      "when": 1703465896928,
+      "tag": "0005_optimal_prism",
+      "breakpoints": true
     }
   ]
 }

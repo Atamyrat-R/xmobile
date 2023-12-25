@@ -27,7 +27,7 @@ async function createUser(
   req: NextApiRequest,
   res: NextApiResponse<APIResponse>,
 ) {
-  const { email, name }: NewUser = req.body;
+  const { email, name, password }: NewUser = req.body;
   if (email == null || name == null)
     return res.status(400).json({
       success: false,
@@ -36,7 +36,7 @@ async function createUser(
   try {
     const newUser = await dbClient
       .insert(users)
-      .values({ name, email })
+      .values({ name, email, password })
       .returning();
     return res.status(200).json({
       success: true,
