@@ -1,6 +1,21 @@
-# Turborepo starter
+# Xmobile
 
-This is an official starter Turborepo.
+## How to setup
+
+- Install `yarn`
+- Install `turbo` [link](https://turbo.build/repo/docs/installing)
+- Install packages with `yarn` command
+- Install docker desktop app and start it
+- Run the following commands to start database, server, and client:
+
+  ```bash
+  # for mac and linux
+  chmod +x start.sh && ./start.sh
+
+  #for windows
+  docker-compose up -d
+  turbo dev
+  ```
 
 ## Features
 

@@ -1,3 +1,4 @@
-export PG_DATABASE=postgres
+#!/bin/bash
+
 docker-compose up -d
-yarn dev
+turbo dev
