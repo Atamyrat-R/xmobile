@@ -2,7 +2,12 @@ import { defineConfig } from "drizzle-kit";
 import "dotenv/config";
 
 export default defineConfig({
-  schema: ["./pages/schema/users.ts", "./pages/schema/invoices.ts"],
+  schema: [
+    "./pages/schema/users.ts",
+    "./pages/schema/invoices.ts",
+    "./pages/schema/customers.ts",
+    "./pages/schema/revenue.ts",
+  ],
   out: "./drizzle",
   verbose: true,
   strict: true,
