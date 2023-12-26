@@ -9,14 +9,16 @@
 - Run the following commands to start database, server, and client:
 
   ```bash
+  # migrate db schema
+  cd apps/api
+  yarn db:generate
+  yarn db:migrate
+
   # for mac and linux
   chmod +x start.sh && ./start.sh
 
   #for windows
   docker-compose up -d
-  cd apps/api
-  yarn db:generate
-  yarn db:migrate
   turbo dev
   ```
 
