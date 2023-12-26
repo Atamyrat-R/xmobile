@@ -7,8 +7,10 @@ import {
   LatestInvoiceRaw,
   User,
   Revenue,
+  LatestInvoice,
 } from "./definitions";
 import { formatCurrency } from "./utils";
+import { LATEST_INVOICES, REVENUE } from "@/app/lib/Endpoint";
 
 export async function fetchRevenue() {
   // Add noStore() here prevent the response from being cached.
@@ -21,11 +23,13 @@ export async function fetchRevenue() {
     // console.log('Fetching revenue data...');
     // await new Promise((resolve) => setTimeout(resolve, 3000));
 
-    const data = await sql<Revenue>`SELECT * FROM revenue`;
+    const { success, data }: { success: boolean; data: Revenue[] } = await (
+      await fetch(REVENUE)
+    ).json();
 
     // console.log('Data fetch completed after 3 seconds.');
 
-    return data.rows;
+    return data;
   } catch (error) {
     console.error("Database Error:", error);
     throw new Error("Failed to fetch revenue data.");
@@ -34,16 +38,12 @@ export async function fetchRevenue() {
 
 export async function fetchLatestInvoices() {
   try {
-    const data = await sql<LatestInvoiceRaw>`
-      SELECT invoices.amount, customers.name, customers.image_url, customers.email, invoices.id
-      FROM invoices
-      JOIN customers ON invoices.customer_id = customers.id
-      ORDER BY invoices.date DESC
-      LIMIT 5`;
+    const { success, data }: { success: boolean; data: LatestInvoice[] } =
+      await (await fetch(LATEST_INVOICES)).json();
 
-    const latestInvoices = data.rows.map((invoice) => ({
+    const latestInvoices = data.map((invoice) => ({
       ...invoice,
-      amount: formatCurrency(invoice.amount),
+      amount: formatCurrency(parseInt(invoice.amount)),
     }));
     return latestInvoices;
   } catch (error) {
@@ -70,10 +70,12 @@ export async function fetchCardData() {
       invoiceStatusPromise,
     ]);
 
-    const numberOfInvoices = Number(data[0].rows[0].count ?? "0");
-    const numberOfCustomers = Number(data[1].rows[0].count ?? "0");
-    const totalPaidInvoices = formatCurrency(data[2].rows[0].paid ?? "0");
-    const totalPendingInvoices = formatCurrency(data[2].rows[0].pending ?? "0");
+    const numberOfInvoices = Number(data[0]!.rows[0]!.count ?? "0");
+    const numberOfCustomers = Number(data[1]!.rows[0]!.count ?? "0");
+    const totalPaidInvoices = formatCurrency(data[2]!.rows[0]!.paid ?? "0");
+    const totalPendingInvoices = formatCurrency(
+      data[2]!.rows[0]!.pending ?? "0",
+    );
 
     return {
       numberOfCustomers,
@@ -136,7 +138,7 @@ export async function fetchInvoicesPages(query: string) {
       invoices.status ILIKE ${`%${query}%`}
   `;
 
-    const totalPages = Math.ceil(Number(count.rows[0].count) / ITEMS_PER_PAGE);
+    const totalPages = Math.ceil(Number(count.rows[0]!.count) / ITEMS_PER_PAGE);
     return totalPages;
   } catch (error) {
     console.error("Database Error:", error);

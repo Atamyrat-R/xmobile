@@ -1,7 +1,8 @@
 import { NewUser, User, users } from "@/pages/schema/users";
 import { APIResponse } from "@/pages/shared/apiresponse";
-import cors from "@/pages/shared/cors";
+import corsWrapper from "@/pages/shared/cors";
 import { dbClient } from "@/pages/shared/dbClient";
+import handleDefault from "@/pages/shared/defaultRequestHandler";
 import { eq } from "drizzle-orm";
 import type { NextApiRequest, NextApiResponse } from "next";
 
@@ -9,7 +10,7 @@ export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse<APIResponse>,
 ) {
-  await cors(req, res);
+  await corsWrapper(req, res);
   switch (req.method) {
     case "POST":
       await createUser(req, res);
@@ -18,8 +19,7 @@ export default async function handler(
       await getUser(req, res);
       break;
     default:
-      handleDefault(req, res);
-      break;
+      handleDefault(res);
   }
 }
 
@@ -68,8 +68,4 @@ async function getUser(req: NextApiRequest, res: NextApiResponse<APIResponse>) {
       message: (error as Error).message,
     });
   }
-}
-
-function handleDefault(req: NextApiRequest, res: NextApiResponse<APIResponse>) {
-  return res.status(500).json({ message: "Server error: method not allowed" });
 }
