@@ -193,10 +193,18 @@ const revenueData = [
 //   });
 // }
 
+// function Seed() {
+//   revenueData.forEach(async (revenu) => {
+//     await dbClient.insert(revenue).values(revenu);
+//   });
+// }
+
 function Seed() {
-  revenueData.forEach(async (revenu) => {
-    await dbClient.insert(revenue).values(revenu);
-  });
+  const invoice = invoicesData.filter((data) => (data.amount = 8546));
+  (async () => {
+    const res = await dbClient.insert(invoices).values(invoice[0]!).returning();
+    console.log(res);
+  })();
 }
 
 Seed();

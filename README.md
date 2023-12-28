@@ -18,7 +18,7 @@
   chmod +x start.sh && ./start.sh
 
   #for windows
-  docker-compose up -d
+  docker-compose up -d # to start the db server, docker app has to be open
   turbo dev
   ```
 
